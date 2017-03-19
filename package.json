@@ -1,0 +1,41 @@
+{
+  "name": "activity-tracking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "dev": "NODE_ENV=development nodemon index.js",
+    "start": "NODE_ENV=production pm2 start index.js --name activity-tracking",
+    "lint": "eslint ./"
+  },
+  "author": "dattran@chotot.vn",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "csv": "^1.1.1",
+    "express": "^4.14.0",
+    "jamqp": "^1.0.10",
+    "jkonfig": "^1.4.1",
+    "jsonwebtoken": "^7.2.1",
+    "lodash": "^4.17.3",
+    "log4js": "^1.1.0",
+    "moment": "^2.17.1",
+    "pg": "^6.1.2",
+    "request": "^2.79.0",
+    "superagent": "^3.5.0",
+    "validator": "^6.2.1"
+  },
+  "devDependencies": {
+    "jest": "^18.0.0"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "/node_modules",
+      "/libs",
+      "/models"
+    ]
+  }
+}

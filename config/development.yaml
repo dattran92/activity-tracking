@@ -1,0 +1,8 @@
+log:
+  type: console
+log_level: ALL
+db:
+  username: postgres
+  host: 127.0.0.1:5432
+  name: activity_tracking
+  password: 123456

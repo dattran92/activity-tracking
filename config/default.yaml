@@ -1,0 +1,13 @@
+log:
+  type: gelf
+  host: #{GELF_HOST}
+  port: #{GELF_PORT}
+log_level: #{LOG_LEVEL}
+private_prefix: /api/v1/private
+public_prefix: /api/v1/public
+db:
+  username: #{DB_USERNAME}
+  host: #{DB_HOST}
+  name: #{DB_NAME}
+time_format: YYYY-MM-DD HH:mm:ss
+date_format: YYYY-MM-DD
