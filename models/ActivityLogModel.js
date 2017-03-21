@@ -32,7 +32,7 @@ class ActivityLogModel extends ModelBase {
       SELECT
         activity,
         deliver_date,
-        SUM(total_sec)
+        SUM(total_sec) AS total_sec
       FROM
         activity_logs
       WHERE

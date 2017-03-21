@@ -70,7 +70,13 @@ router.get(`${prefix}/reports/monthly`, (req, res) => {
   const fromDate = req.query.from;
   const toDate = req.query.to;
   return activityLogModel.getMonthlyReport(user.user_id, activity, fromDate, toDate)
-    .then((result) => res.json(result))
+    .then((result) => {
+      result.map((item) => {
+        item.deliver_date = moment(item.deliver_date).format(config.date_format);
+        return item;
+      });
+      res.json(result);
+    })
     .catch((error) => {
       return errorHandle(res, error);
     });
