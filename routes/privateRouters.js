@@ -72,7 +72,7 @@ router.get(`${prefix}/reports/monthly`, (req, res) => {
   return activityLogModel.getMonthlyReport(user.user_id, activity, fromDate, toDate)
     .then((result) => {
       result.map((item) => {
-        item.deliver_date = moment(item.deliver_date).format(config.date_format);
+        item.deliver_date = moment(item.deliver_date).format('X');
         return item;
       });
       res.json(result);
