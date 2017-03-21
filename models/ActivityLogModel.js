@@ -27,6 +27,24 @@ class ActivityLogModel extends ModelBase {
     return this.queryMulti(query, [ userId, activity, fromDate, toDate ]);
   }
 
+  getMonthlyReport(userId, activity, fromDate, toDate) {
+    const query = `
+      SELECT
+        activity,
+        deliver_date,
+        SUM(total_sec)
+      FROM
+        activity_logs
+      WHERE
+        user_id = $1 AND
+        activity = $2 AND
+        deliver_date >= $3 AND
+        deliver_date <= $4
+      GROUP BY deliver_date, activity
+    `;
+    return this.queryMulti(query, [ userId, activity, fromDate, toDate ]);
+  }
+
   checkin(userId, activity, checkin) {
     const deliverDate = moment(checkin, config.time_format).format(config.date_format);
     const query = `
@@ -50,7 +68,7 @@ class ActivityLogModel extends ModelBase {
       WHERE
         user_id = $1 AND
         activity = $2 AND
-        deliver_date >= $3 AND 
+        deliver_date >= $3 AND
         deliver_date <= $4
     `;
     return this.queryOne(query, [ userId, activity, fromDate, toDate ]);

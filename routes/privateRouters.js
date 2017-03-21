@@ -64,6 +64,18 @@ router.get(`${prefix}/logs/:activity`, (req, res) => {
     });
 });
 
+router.get(`${prefix}/reports/monthly`, (req, res) => {
+  const user = req.user;
+  const activity = req.query.activity;
+  const fromDate = req.query.from;
+  const toDate = req.query.to;
+  return activityLogModel.getMonthlyReport(user.user_id, activity, fromDate, toDate)
+    .then((result) => res.json(result))
+    .catch((error) => {
+      return errorHandle(res, error);
+    });
+});
+
 router.get(`${prefix}/reports/summary`, (req, res) => {
   const user = req.user;
   const date = req.query.date;
